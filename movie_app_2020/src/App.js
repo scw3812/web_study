@@ -1,33 +1,33 @@
-function Food({ name, picture }) {
-  return (
-    <div>
-      <h2>I like {name}</h2>
-      <img src={picture}/>
-    </div>
-  );
-}
+import React from 'react';
+import axios from 'axios';
 
-const foodILike = [
-  {
-    name: 'Kimchi',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLZZUSXh58d9_fxQogvAbvkkB_6qEHqxmfGMpKM-ncyNE2_cMybSmAI42XhvM&usqp=CAc'
-  },
-  {
-    name: 'Samgyeopsal',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLZZUSXh58d9_fxQogvAbvkkB_6qEHqxmfGMpKM-ncyNE2_cMybSmAI42XhvM&usqp=CAc'
-  },
-  {
-    name: 'Bibimbap',
-    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLZZUSXh58d9_fxQogvAbvkkB_6qEHqxmfGMpKM-ncyNE2_cMybSmAI42XhvM&usqp=CAc'
+class App extends React.Component {
+  state = {
+    isLoading: true,
+    movies: [],
+  };
+
+  getMovies = async () => {
+    const {
+      data: {
+        data: { movies },
+      },
+    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    
+    this.setState({ movies, isLoading: false });
   }
-];
 
-function App() {
-  return( 
-    <div>
-      {foodILike.map(dish => (<Food name={dish.name} picture={dish.image} />))}
-    </div>
-  );
+  componentDidMount() {
+    this.getMovies();
+  }
+
+  render() {
+    const { isLoading } = this.state;
+
+    return (
+      <div>{isLoading ? 'Loading...' : 'We are Ready'}</div>
+    );
+  }
 }
 
 export default App;

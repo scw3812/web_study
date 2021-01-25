@@ -83,7 +83,7 @@ function VideoUploadPage(props) {
 
         const variables = {
             writer: user.userData._id,
-            title: Title,
+            title: VideoTitle,
             description: Description,
             privacy: Private,
             filePath: FilePath,

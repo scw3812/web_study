@@ -22,7 +22,7 @@ function Subscribe(props) {
         Axios.post('/api/subscribe/subscribed', subscriberVariable)
         .then(response => {
             if (response.data.success) {
-                setSubscribed(response.data.subsribed)
+                setSubscribed(response.data.subscribed)
             } else{
                 alert('구독 정보를 받아오지 못했습니다.')
             }

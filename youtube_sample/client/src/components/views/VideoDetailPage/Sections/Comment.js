@@ -1,6 +1,7 @@
 import Axios from 'axios';
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
+import SingleComment from './SingleComment';
 
 function Comment(props) {
     const videoId = props.postId
@@ -14,19 +15,23 @@ function Comment(props) {
     const onSubmit = e => {
         e.preventDefault()
 
-        const variable = {
-            content: CommentValue,
-            writer: user.userData._id,
-            postId: videoId
+        if (user.userData._id) {
+            const variable = {
+                content: CommentValue,
+                writer: user.userData._id,
+                postId: videoId
+            }
+            Axios.post('/api/comment/saveComment', variable)
+                .then(response => {
+                    if (response.data.success) {
+                        console.log(response.data.result)
+                    } else {
+                        alert('코멘트 저장 실패')
+                    }
+                })
+        } else {
+            alert('로그인하세요')
         }
-        Axios.post('/api/comment/saveComment', variable)
-            .then(response => {
-                if (response.data.success) {
-                    console.log(response.data.result)
-                } else {
-                    alert('코멘트 불러오기 실패')
-                }
-            })
     }
 
     return (
@@ -34,6 +39,11 @@ function Comment(props) {
             <br />
             <p>Replies</p>
             <hr />
+
+            {props.comments && props.comments.map((comment, index) =>(
+                <SingleComment key={index} comment={comment} postId={videoId}/>
+            ))}
+            
 
             <form style={{ display: 'flex' }} onSubmit={onSubmit}>
                 <textarea

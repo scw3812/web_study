@@ -24,6 +24,15 @@ function VideoDetailPage(props) {
                 }
             })
         
+        Axios.post('/api/comment/getComments', variable)
+            .then(response => {
+                if(response.data.success) {
+                    setComments(response.data.comments)
+                } else {
+                    alert('코멘트 불러오기 실패')
+                }
+            })
+        
     }, [])
 
     if (VideoDetail.writer) {
@@ -44,7 +53,7 @@ function VideoDetailPage(props) {
                                 description={VideoDetail.description}
                             />
                         </List.Item>
-                        <Comment postId={videoId}/>
+                        <Comment postId={videoId} comments={Comments}/>
                     </div>
                 </Col>
                 <Col lg={6} xs={24}>

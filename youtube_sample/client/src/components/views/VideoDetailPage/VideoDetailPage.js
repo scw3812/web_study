@@ -32,8 +32,11 @@ function VideoDetailPage(props) {
                     alert('코멘트 불러오기 실패')
                 }
             })
-        
     }, [])
+
+    const refreshFunction = (newComment) => {
+        setComments(Comments.concat(newComment))
+    }
 
     if (VideoDetail.writer) {
 
@@ -53,7 +56,7 @@ function VideoDetailPage(props) {
                                 description={VideoDetail.description}
                             />
                         </List.Item>
-                        <Comment postId={videoId} comments={Comments}/>
+                        <Comment refreshFunction={refreshFunction} postId={videoId} comments={Comments}/>
                     </div>
                 </Col>
                 <Col lg={6} xs={24}>

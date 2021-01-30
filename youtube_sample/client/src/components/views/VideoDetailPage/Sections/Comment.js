@@ -24,7 +24,8 @@ function Comment(props) {
             Axios.post('/api/comment/saveComment', variable)
                 .then(response => {
                     if (response.data.success) {
-                        console.log(response.data.result)
+                        props.refreshFunction(response.data.result)
+                        setCommentValue("")
                     } else {
                         alert('코멘트 저장 실패')
                     }
@@ -41,7 +42,8 @@ function Comment(props) {
             <hr />
 
             {props.comments && props.comments.map((comment, index) =>(
-                <SingleComment key={index} comment={comment} postId={videoId}/>
+                (!comment.responseTo &&
+                <SingleComment key={index} refreshFunction={props.refreshFunction} comment={comment} postId={videoId}/>)
             ))}
             
 

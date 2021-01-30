@@ -27,12 +27,13 @@ function SingleComment(props) {
             content: CommentValue,
             writer: user.userData._id,
             postId: videoId,
-            responseTo: props.comment
+            responseTo: props.comment._id
         }
         Axios.post('/api/comment/saveComment', variable)
             .then(response => {
                 if (response.data.success) {
-                    console.log(response.data.result)
+                    props.refreshFunction(response.data.result)
+                    setCommentValue("")
                 } else {
                     alert('코멘트 저장 실패')
                 }

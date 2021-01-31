@@ -23,21 +23,26 @@ function SingleComment(props) {
     const onSubmit = e => {
         e.preventDefault()
 
-        const variable = {
-            content: CommentValue,
-            writer: user.userData._id,
-            postId: videoId,
-            responseTo: props.comment._id
-        }
-        Axios.post('/api/comment/saveComment', variable)
-            .then(response => {
-                if (response.data.success) {
-                    props.refreshFunction(response.data.result)
-                    setCommentValue("")
-                } else {
-                    alert('코멘트 저장 실패')
-                }
-            })
+        if (user.userData._id) {
+            const variable = {
+                content: CommentValue,
+                writer: user.userData._id,
+                postId: videoId,
+                responseTo: props.comment._id
+            }
+            Axios.post('/api/comment/saveComment', variable)
+                .then(response => {
+                    if (response.data.success) {
+                        props.refreshFunction(response.data.result)
+                        setCommentValue("")
+                        setOpenReply(false)
+                    } else {
+                        alert('코멘트 저장 실패')
+                    }
+                })
+        } else {
+            alert('로그인하세요')
+        }   
     }
 
     const actions = [

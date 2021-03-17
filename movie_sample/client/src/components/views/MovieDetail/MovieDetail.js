@@ -48,7 +48,7 @@ function MovieDetail(props) {
            <div style={{ width: '85%', margin: '3rem auto' }}>
                
                <div style={{ display: 'flex', justifyContent:'flex-end' }}>
-                   <Favorite />
+                   <Favorite movieInfo={Movie} movieId={movieId} userFrom={localStorage.getItem('userId')} />
                </div>
 
                {Movie &&

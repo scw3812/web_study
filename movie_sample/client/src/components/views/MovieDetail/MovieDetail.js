@@ -3,6 +3,7 @@ import { API_KEY, API_URL, IMAGE_BASE_URL } from '../../Config';
 import MainImage from '../LandingPage/Sections/MainImage';
 import MovieInfo from './Sections/MovieInfo';
 import GridCards from '../commons/GridCards'
+import Favorite from './Sections/Favorite';
 import { Row } from 'antd';
 
 function MovieDetail(props) {
@@ -47,7 +48,7 @@ function MovieDetail(props) {
            <div style={{ width: '85%', margin: '3rem auto' }}>
                
                <div style={{ display: 'flex', justifyContent:'flex-end' }}>
-                   <button onClick>Favorite</button>
+                   <Favorite />
                </div>
 
                {Movie &&
@@ -57,7 +58,7 @@ function MovieDetail(props) {
                }
                 <br/>
                 <div style={{ display: 'flex', justifyContent: 'center', margin: '2rem' }}>
-                    <button onClick={toogleActorView}> Toggle Actor View </button>    
+                    <button onClick={toogleActorView}> Toggle Actor View </button>
                 </div>
 
                 {ActorToggle &&

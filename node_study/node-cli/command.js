@@ -96,8 +96,8 @@ program
     });
 
 program
-    .action((cmd, command) => {
-        if (command.args.length) {
+    .action((cmd, comd) => {
+        if (comd.args.length) {
             console.log(chalk.bold.red('no command'));
             program.help();
         } else {

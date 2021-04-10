@@ -97,7 +97,7 @@ program
 
 program
     .action((cmd, command) => {
-        if (command.args) {
+        if (command.args.length) {
             console.log(chalk.bold.red('no command'));
             program.help();
         } else {

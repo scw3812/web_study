@@ -15,7 +15,7 @@
   \**********************/
 /***/ (() => {
 
-eval("console.log(\"start\");\n\n//# sourceURL=webpack://es6_study/./src/index.js?");
+eval("var myfun = function myfun() {\n  var name = 'crong';\n  console.log(\"my name is \".concat(name));\n};\n\nmyfun();\n\n//# sourceURL=webpack://es6_study/./src/index.js?");
 
 /***/ })
 

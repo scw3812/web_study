@@ -11,6 +11,7 @@ router.get('/', async (req, res, next) => {
       where: { id: req.user && req.user.id || null },
       include: { model: Domain },
     });
+    console.log(user);
     res.render('login', {
       user,
       domains: user && user.Domains,
@@ -24,7 +25,7 @@ router.get('/', async (req, res, next) => {
 router.post('/domain', isLoggedIn, async (req, res, next) => {
   try {
     await Domain.create({
-      userId: req.user.id,
+      UserId: req.user.id,
       host: req.body.host,
       type: req.body.type,
       clientSecret: uuidv4(),

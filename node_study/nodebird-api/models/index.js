@@ -32,6 +32,6 @@ Domain.init(sequelize);
 User.associate(db);
 Post.associate(db);
 Hashtag.associate(db);
-Domain.associated(db);
+Domain.associate(db);
 
 module.exports = db;

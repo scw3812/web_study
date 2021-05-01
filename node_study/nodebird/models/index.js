@@ -9,7 +9,7 @@ const Hashtag = require('./hashtag');
 const db = {};
 
 const sequelize = new Sequelize(
-  config.database, config.username, config.password, config
+  config.database, config.username, config.password, config,
 );
 // if (config.use_env_variable) {
 //   sequelize = new Sequelize(process.env[config.use_env_variable], config);

@@ -3,7 +3,6 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const { isLoggedIn, isNotLoggedIn } = require('./middlewares');
 const User = require('../models/user');
-const { use } = require('./page');
 
 const router = express.Router();
 
